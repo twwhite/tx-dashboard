@@ -3,9 +3,9 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ItemsComponent } from './items/items.component';
-import { TransactionsComponent } from './transactions/transactions.component';
-import { ConversionsComponent } from './conversions/conversions.component';
+import { ItemsComponent } from './components/items/items.component';
+import { TransactionsComponent } from './components/transactions/transactions.component';
+import { ConversionsComponent } from './components/conversions/conversions.component';
 
 @NgModule({
   declarations: [
