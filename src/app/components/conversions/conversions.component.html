@@ -1,3 +1,15 @@
-<p>
-  conversions works!
-</p>
+<div>
+  <button class="button" (click)="hideUnitsTable()">Toggle Units Display</button>
+  <table class="table is-hoverable is-fullwidth" id="unitsTable">
+    <thead>
+      <tr>
+        <th *ngFor="let unit of units[0] | keyvalue">{{unit.key | titlecase}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let unit of units">
+       <td *ngFor="let data of unit | keyvalue">{{ data.value }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
