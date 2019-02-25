@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ITEMS } from './mock-data';
+declare var $: any;
+
 
 @Component({
   selector: 'app-items',
@@ -13,6 +15,8 @@ export class ItemsComponent implements OnInit {
         1) Item Create, Modify, Save, Destroy model
           note: verify units against UNITS every change ^
   */
+
+
 
   constructor() { }
 

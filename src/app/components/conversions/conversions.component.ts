@@ -14,14 +14,12 @@ export class ConversionsComponent implements OnInit {
   /* TODO: Add conversion function */
   units = UNITS;
 
-  public hideUnitsTable() {
-    $('#unitsTable').toggle();
-  }
+
 
   constructor() { }
 
   ngOnInit() {
-
+    
   }
 
 }

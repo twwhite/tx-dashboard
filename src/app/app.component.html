@@ -4,6 +4,9 @@
 
 
 <!-- Just debugging for now -->
-<app-items></app-items>
-<app-transactions></app-transactions>
-<app-conversions></app-conversions>
+<button class="button" (click)="toggleVisibility('app-items')">Show/Hide Items</button>
+<button class="button" (click)="toggleVisibility('app-transactions')">Show/Hide Transactions</button>
+<button class="button" (click)="toggleVisibility('app-conversions')">Show/Hide Conversions</button>
+<app-items class="section"></app-items>
+<app-transactions class="section"></app-transactions>
+<app-conversions class="section"></app-conversions>
