@@ -1,6 +1,8 @@
 import { Unit } from './unit';
 
 /* Not included: Temperature. Non-linear transformations. */
+/* TODO: Standardize pluralizations
+*/
 export const UNITS: Unit[] = [
     {abbr:"nm", name:"nanometer", baseUnit:"m", factor:0.000000001, type:"length", system:"SI"},
     {abbr:"um", name:"micrometer", baseUnit:"m", factor:0.000001, type:"length", system:"SI"},
