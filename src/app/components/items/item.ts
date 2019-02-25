@@ -1,6 +1,6 @@
 export class Item {
 
-    // An item is a concept of something that can be transacted. It is a placeholder that has no inherint value, only an expected value per quantity
+    // An item is a concept of something that can be transacted. It is a placeholder that has no inherint value, only an expected value per quantity when it is transacted
 
     // Mandatory inputs
     type: number;       // 0 = buyable, 1 = sellable, 2 = buyable/sellable
@@ -13,7 +13,7 @@ export class Item {
     // Conditional inputs
     margin?: number;    // Optional margin, enabled for sellable items (type 1 and 2) Fx = ABS(value)*(1+margin)
     yield?: number;     // Can product be lost during creation? Yield = 0 .. 1
-
-
+    dependencies?: [number, number, string][];
+    
   }
   
