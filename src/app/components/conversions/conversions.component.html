@@ -1,6 +1,36 @@
 <div id="conversionsTopDiv">
   <h1 class="title">Conversions Panel</h1>
   <h2 class="subtitle">Conversions Subtitle</h2>
+
+  
+  <div class="section">
+    <h3>Conversion testing area:</h3> 
+    <div class="section columns">
+      <div class="column">
+          <input class="input is-primary" type="text" placeholder="Value (space) unit-abbreviation" (input)="onConversionChange($event.target.value)">
+          <div class="select is-primary">
+              <select>
+                <option>Select dropdown</option>
+                <option>With options</option>
+              </select>
+            </div>
+      </div>
+      <div class="column">
+          <input class="input is-primary " type="text" placeholder="Primary input">
+          <div class="select is-primary">
+              <select>
+                <option>Select dropdown</option>
+                <option>With options</option>
+              </select>
+            </div>
+      </div>
+       
+        <ul>
+          
+        </ul>
+    </div>
+  </div>
+
   <table class="table is-hoverable is-fullwidth" id="unitsTable">
     <thead>
       <tr>
