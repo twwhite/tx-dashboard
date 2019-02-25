@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConversionsComponent implements OnInit {
 
+
+  /* TODO: Add conversion function */
+
   constructor() { }
 
   ngOnInit() {

@@ -6,5 +6,3 @@ export class Unit {
     type: string;       // length, mass, etc
     system: string;     // SI, British, etc
 }
-
-

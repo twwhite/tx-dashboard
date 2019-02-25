@@ -8,6 +8,12 @@ import { ITEMS } from './mock-data';
 })
 export class ItemsComponent implements OnInit {
 
+
+  /* TODO:
+        1) Item Create, Modify, Save, Destroy model
+          note: verify units against UNITS every change ^
+  */
+
   constructor() { }
 
   ngOnInit() {

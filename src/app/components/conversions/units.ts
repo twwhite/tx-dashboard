@@ -13,7 +13,7 @@ export const UNITS: Unit[] = [
     {abbr:"Mm", name:"megameter", baseUnit:"m", factor:1000000, type:"length", system:"SI"},
     {abbr:"Gm", name:"gigameter", baseUnit:"m", factor:1000000000, type:"length", system:"SI"},
     {abbr:"Tm", name:"terameter", baseUnit:"m", factor:1E+12, type:"length", system:"SI"},
-    {abbr:"s", name:"second", baseUnit:"s", factor:1, type:"time", system:"SI"},
+    {abbr:"s",  name:"second", baseUnit:"s", factor:1, type:"time", system:"SI"},
     {abbr:"minute", name:"minute", baseUnit:"s", factor:60, type:"time", system:"SI"},
     {abbr:"hour", name:"hour", baseUnit:"s", factor:3600, type:"time", system:"SI"},
     {abbr:"day", name:"days", baseUnit:"s", factor:216000, type:"time", system:"SI"},

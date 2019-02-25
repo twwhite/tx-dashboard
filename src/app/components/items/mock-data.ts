@@ -17,6 +17,7 @@ export const ITEMS: Item[] = [
         //  [id, qty, unit]
             [3, 25, "tonnes"],
             [4, 532, "cubic-feet"]
+            // Not sure about order of operations here, if this is an array, what happens if "Dolomite" line-item is after this one?
         ]
     }
 
