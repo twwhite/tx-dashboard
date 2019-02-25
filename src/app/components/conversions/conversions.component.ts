@@ -43,11 +43,13 @@ export class ConversionsComponent implements OnInit {
   /* This is where the conversion is actually calculated */
   public validateConversion() {
     /* TODO: Better validation here, need to check for same base unit or at the lease same unit type*/
-    if($("#convertValue").val()>0 && $("#fromUnitIdentified")){ 
+    if($("#convertValue").val()>0 && this.convertToUnit.baseUnit == this.convertFromUnit.baseUnit){ 
       var outputResult = (this.convertFromUnit.factor * $("#convertValue").val())/(this.convertToUnit.factor); // The basic calculation is ( input value * input conversion factor ) / output conversion factor.
-      $("#outputResult").text(outputResult) // display results
+      $("#outputResult").text(outputResult.toFixed(2) + "  " +this.convertToUnit.name) // display results
+    } else if(this.convertToUnit.baseUnit != this.convertFromUnit.baseUnit) { // ugly validation, but it works
+      $("#outputResult").text("Cannot convert: Dissimilar types") // display results
     }
-    
+
   }
 
 
