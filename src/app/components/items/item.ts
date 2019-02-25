@@ -16,7 +16,7 @@ export class Item {
     /* Conditional */ 
     margin?: number;    // Optional margin, enabled for sellable items (type 1 and 2) Fx = ABS(value)*(1+margin)
     yield?: number;     // Can product be lost during creation? Yield = 0 .. 1
-    dependencies?: [number, number, string][];
+    dependencies?: [number, number, string][]; 
 
 }
   

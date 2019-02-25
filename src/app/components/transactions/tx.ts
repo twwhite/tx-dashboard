@@ -11,6 +11,7 @@ export class Transaction {
     id: number;         // Unique global identifier for each transaction
     itemID: number;     // Item reference for this transaction. Only one item can be transacted in each transaction, but items can have other item dependencies which would account for this.
     itemQty: number;    // 
+    itemUnits: string;
     txDate: number;
 
     /* Optional */
@@ -19,7 +20,7 @@ export class Transaction {
     /*  TODO:   1) Should this have a per-unit for each point, or overall per unit? 
                 2) Allow for txFunctions to be more complex like multpliers of other transactions 
     */
-    txFunction?: [number, number][];  
+    txFunction?: [number, number][]; // First number = datetime, second number = new itemQty
     
     // Note: If "perUnit" is set, and txFunction is NOT set, step function straight line of amplitude "itemQty" would be present on final chart starting from txDate.
 
