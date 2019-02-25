@@ -13,14 +13,41 @@ export class ConversionsComponent implements OnInit {
 
   /* TODO: Add conversion function */
   units = UNITS;
+  public convertFromUnit;
+  public convertToUnit;
 
   /* Work-in-progress: Input parser for conversion, conversion lookup, rate finder */
-  public onConversionChange(input: string) {
-    var conversionUnit = input.split(" ").pop();
-    if(conversionUnit.length > 0){
-      var cFactor = this.units.find( x => x.abbr === conversionUnit).factor;
+  /* onConversionChange called after every keypress in the conversion input boxes */
+  public onConversionChange(event) {
+
+    var input = event.target.value; // string value from input box of either fromUnit or toUnit, whichever was modified
+    var id = event.target.id;       // ID of input box
+
+    if(input.length > 0){     // First validation, if input length > 0
+      var unit = this.units.find( x => x.abbr === input)  // Try to find the string in array of units, specifically the abbr column
+      if(unit){               // if found
+        $('#'+id+'Identified').text(unit.name); // Modify element with ID #toUnitIdentified or #fromUnitIdentified with the full name of the identified unit
+
+        /* TODO: Make this less manual */
+        if(id=="fromUnit"){ 
+          this.convertFromUnit = unit;  // Store found from UNIT object publically so we can access during conversion without re-searching
+        }else if(id=="toUnit"){
+          this.convertToUnit = unit;    // Store found to UNIT object publically so we can access during conversion without re-searching
+        }
+
+      } else {$('#'+id+'Identified').text(" ");}  // if fail, blank the identified <span> elements 
+    } else {$('#'+id+'Identified').text(" ");}    // if fail, blank the identified <span> elements 
+
+  }
+
+  /* This is where the conversion is actually calculated */
+  public validateConversion() {
+    /* TODO: Better validation here, need to check for same base unit or at the lease same unit type*/
+    if($("#convertValue").val()>0 && $("#fromUnitIdentified")){ 
+      var outputResult = (this.convertFromUnit.factor * $("#convertValue").val())/(this.convertToUnit.factor); // The basic calculation is ( input value * input conversion factor ) / output conversion factor.
+      $("#outputResult").text(outputResult) // display results
     }
-    console.log(cFactor);
+    
   }
 
 

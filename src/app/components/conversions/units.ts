@@ -70,6 +70,8 @@ export const UNITS: Unit[] = [
     {abbr:"yPa", name:"yoctoPascal", baseUnit:"Pa", factor:1.00E-24, type:"pressure", system:"SI"},
     {abbr:"kg", name:"kilogram", baseUnit:"kg", factor:1, type:"mass", system:"SI"},
     {abbr:"ft", name:"foot", baseUnit:"m", factor:0.3048, type:"length", system:"SI"},
+    {abbr:"tonne", name:"metric ton", baseUnit:"kg", factor:1000, type:"mass",system:"SI"},
+    {abbr:"ton", name:"short ton", baseUnit:"kg", factor:907.1847, type:"mass",system:"English"},
     {abbr:"ng", name:"nanogram", baseUnit:"kg", factor:1.00E-12, type:"mass", system:"SI"},
     {abbr:"ug", name:"microgram", baseUnit:"kg", factor:1.00E-09, type:"mass", system:"SI"},
     {abbr:"mg", name:"milligram", baseUnit:"kg", factor:0.000001, type:"mass", system:"SI"},

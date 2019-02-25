@@ -3,33 +3,30 @@
   <h2 class="subtitle">Conversions Subtitle</h2>
 
   
-  <div class="section">
-    <h3>Conversion testing area:</h3> 
-    <div class="section columns">
-      <div class="column">
-          <input class="input is-primary" type="text" placeholder="Value (space) unit-abbreviation" (input)="onConversionChange($event.target.value)">
-          <div class="select is-primary">
-              <select>
-                <option>Select dropdown</option>
-                <option>With options</option>
-              </select>
-            </div>
-      </div>
-      <div class="column">
-          <input class="input is-primary " type="text" placeholder="Primary input">
-          <div class="select is-primary">
-              <select>
-                <option>Select dropdown</option>
-                <option>With options</option>
-              </select>
-            </div>
-      </div>
-       
-        <ul>
-          
-        </ul>
-    </div>
+
+<div class="field columns">
+  <div class="control column">
+    <label class="label">Input Value</label>
+    <input class="input is-primary" type="number" placeholder="Value" id="convertValue">
   </div>
+  <div class="control column">
+    <label class="label">Input Unit</label>
+    <input class="input is-primary" type="text" placeholder="Unit-abbreviation" (input)="onConversionChange($event)" id="fromUnit">
+    <span id="fromUnitIdentified"></span>
+  </div>        
+  <div class="control column">
+    <label class="label">Desired Unit</label>
+    <input class="input is-primary" type="text" placeholder="Unit-abbreviation" (input)="onConversionChange($event)" id="toUnit">
+    <span id="toUnitIdentified"></span>
+  </div>
+  <div class="column">
+    <label class="label">Output Results</label>
+    <h5 class="title is-5" id="outputResult"></h5>
+  </div>
+</div>
+<button class="button" (click)="validateConversion($event)">Convert!</button>
+
+
 
   <table class="table is-hoverable is-fullwidth" id="unitsTable">
     <thead>
