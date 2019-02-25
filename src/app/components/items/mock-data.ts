@@ -1,6 +1,6 @@
 import { Item } from "./item"
 
-export const DATA: Item[] = [
+export const ITEMS: Item[] = [
 
     /* TODO: Should the items be inserted into the sorted array, or the array be sorted when called? */
     { type: 0, id: 1, name: "sand", category: "raw material", value: -200, value_unit: "tonne" },

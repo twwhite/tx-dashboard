@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TRANSACTIONS } from './mock-transactions';
 
 @Component({
   selector: 'app-transactions',

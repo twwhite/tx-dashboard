@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DATA } from './mock-data';
+import { ITEMS } from './mock-data';
 
 @Component({
   selector: 'app-items',
