@@ -1,15 +1,52 @@
-<div>
+<div class="columns">
+  <section class="section column sortable" id="itemsEdit">
+    <h1 class="title">Items</h1>
+    <p class="subtitle">List of any transactable item</p>
 
-  <h1 class="title">Item Panel</h1>
-  <h2 class="subtitle">Item subtitle</h2>
+    
+    <table class="table is-hoverable is-fullwidth" id="allTypeZero">
+      <thead>
+        <tr>
+          <th *ngFor="let headers of items[0] | keyvalue"> {{headers.key}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of items">
+          <td *ngFor="let attr of item | keyvalue" (click)="onSelect(item)">
+            <span *ngIf="item.type==0;">{{ attr.value }}</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
+    <table class="table is-hoverable is-fullwidth" id="allTypeOne">
+        <thead>
+          <tr>
+            <th *ngFor="let headers of items[0] | keyvalue"> {{headers.key}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of items">
+            <td *ngFor="let attr of item | keyvalue" (click)="onSelect(item)">
+              <span *ngIf="item.type==0;">{{ attr.value }}</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+  
+
+  </section>
 </div>
 
-<ul>
-  <li *ngFor="let item of items" (click)="onSelect(item)">{{item.name}}</li>
-</ul>
 
-<button class="button">New Item</button>
+    <h2>Add New Item</h2>
+    <label>Item name:
+      <input class="input" #itemName />
+    </label>
+    <button class="button" (click)="add(itemName.value); itemName.value=''">Add Item</button> 
 
 
-<app-item-detail [item]="selectedItem"></app-item-detail>
+  <!-- <app-item-search></app-item-search> -->
+
+  <app-item-detail [item]="selectedItem"></app-item-detail>
+

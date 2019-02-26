@@ -1,5 +1,4 @@
 <div *ngIf="item">
-
   <h2>{{item.name | uppercase}} Details</h2>
   <div><span>id: </span>{{item.id}}</div>
   <div>
@@ -8,4 +7,6 @@
     </label>
   </div>
 
+  <button class="button" (click)="goBack()">Go Back</button>
+  <button class="button" (click)="save()">Save</button>
 </div>
