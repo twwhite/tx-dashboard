@@ -11,7 +11,7 @@ export class Item {
     name: string;       // Display name for item
     category: string;   // Category of item, example "raw materials"
     value: number;      // Number representation of value (Can be zero)
-    value_unit: string; // Unit representation of value (used with value input)
+    value_unit: string; // Unit representation of value (used with value input). test
 
     /* Conditional */ 
     margin?: number;    // Optional margin, enabled for sellable items (type 1 and 2) Fx = ABS(value)*(1+margin)
