@@ -1,13 +1,11 @@
 
-<h1 class="title">TX-Dashboard title</h1>
-<h2 class="subtitle">TX-Dashboard subtitle</h2>
+<h1 class="title">TX-Dashboard</h1>
+<h2 class="subtitle">A place for all your transactional needs</h2>
 
 
-<!-- Just debugging for now -->
-<!-- TODO implement proper routing using router-outlet -->
-<button class="button" (click)="toggleVisibility('app-items')">Show/Hide Items</button>
-<button class="button" (click)="toggleVisibility('app-transactions')">Show/Hide Transactions</button>
-<button class="button" (click)="toggleVisibility('app-conversions')">Show/Hide Conversions</button>
-<app-items class="section"></app-items>
-<app-transactions class="section"></app-transactions>
-<app-conversions class="section"></app-conversions>
+<button class="button" routerLink="/items">Items</button>
+<button class="button" routerLink="/transactions">Heroes</button>
+<button class="button" routerLink="/units">Conversions</button>
+
+<router-outlet></router-outlet>
+<app-messages></app-messages>

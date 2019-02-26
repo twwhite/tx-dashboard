@@ -1,4 +1,15 @@
 <div>
+
   <h1 class="title">Item Panel</h1>
   <h2 class="subtitle">Item subtitle</h2>
+
 </div>
+
+<ul>
+  <li *ngFor="let item of items" (click)="onSelect(item)">{{item.name}}</li>
+</ul>
+
+<button class="button">New Item</button>
+
+
+<app-item-detail [item]="selectedItem"></app-item-detail>
