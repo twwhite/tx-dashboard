@@ -1,8 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Item } from './item';
 import { ItemService } from '../../services/item.service';
-import { Location } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
 
 declare var $: any; // Jquery import
 
@@ -15,10 +13,14 @@ declare var $: any; // Jquery import
     <div class="columns">
       <label class="column" *ngFor="let attr of selectedItem | keyvalue">
         {{ attr.key | titlecase }}
-        <input class="input" [(ngModel)]="attr.value" placeholder="Item Name"/>
+        <input class="input " [(ngModel)]="attr.value" placeholder="Item Name"/>
       </label>
+      <button class="button is-danger column is-1"
+      (click)="delete(selectedItem)">Delete</button>
+     
     </div>
 
+ 
     <button class="button" (click)="goBack()">Cancel</button>
     <button class="button" (click)="save()">Save</button>
   </div>  
@@ -36,19 +38,24 @@ declare var $: any; // Jquery import
     </tbody>
   </table>
 
-  <button class="button" (click)="showAdd = !showAdd">Toggle New Item Form</button>
+  <button class="button is-pulled-right" (click)="showAdd = !showAdd">Toggle New Item Form</button>
   <div *ngIf="showAdd">
-    <label class="label">Item Name:
-      <input class="input" #itemName />
+    <label class="label">Item Category:
+      <input class="input" [(ngModel)]="newItem.category" placeholder="Item Category"/>
     </label>
-    <!-- (click) passes input value to add() and then clears the input -->
-    <button class="button" (click)="add(itemName.value); itemName.value=''">
+     <label class="label">Item Name:
+      <input class="input" [(ngModel)]="newItem.name" placeholder="Item Name"/>
+    </label>
+    <label class="label">Item Value:
+      <input class="input" [(ngModel)]="newItem.value" placeholder="Item Value"/>
+    </label>
+    <button class="button" (click)="add(newItem);">
       Add
     </button>
   </div>
 
  
-  <!-- <app-messages></app-messages> -->
+  <app-messages></app-messages>
   `,
   styleUrls: ['./items.component.scss']
 })
@@ -57,11 +64,10 @@ export class ItemsComponent implements OnInit {
 
   items: Item[];
   @Input() selectedItem: Item;
+  newItem: Item;
 
   constructor(
-    private route: ActivatedRoute,
     private _itemService: ItemService,
-    private location: Location
   ) { }
 
   ngOnInit() {
@@ -102,7 +108,8 @@ export class ItemsComponent implements OnInit {
 
   delete(item: Item): void {
     this.items = this.items.filter(h => h !== item);
-    this._itemService.deleteItem(item).subscribe();
+    this._itemService.deleteItem(item)
+      .subscribe(() => this.goBack());
   }
 
 }

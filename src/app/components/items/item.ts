@@ -17,6 +17,7 @@ export class Item {
     margin?: number;    // Optional margin, enabled for sellable items (type 1 and 2) Fx = ABS(value)*(1+margin)
     yield?: number;     // Can product be lost during creation? Yield = 0 .. 1
     dependencies?: [number, number, string][]; // Items that must be costed to use this item.
+    
     // TODO: Request confirmation a dependency is inserted alongside another dependcy that already has that new dependency as a subdependency
     /*
         e.g. item: Finished Window
