@@ -19,11 +19,14 @@ export class ItemService {
   private itemsUrl = 'api/items';
   private itemUrl: string;
 
-  constructor( private http: HttpClient, private messageService: MessageService) { }
+  constructor( 
+    private http: HttpClient, 
+    // private messageService: MessageService
+  ) { }
 
-  private log(message: string) {
-    this.messageService.add(`ItemService: ${message}`);
-  }
+  // private log(message: string) {
+  //   this.messageService.add(`ItemService: ${message}`);
+  // }
 
   /** CREATE: add a new item to the server */
   addItem (item: Item): Observable<Item> {
@@ -36,7 +39,6 @@ export class ItemService {
 
   /** READ: return items from ItemService */
   getItems(): Observable<Item[]> {
-    // this.messageService.add('ItemService: fetched items');
     return this.http.get<Item[]>(this.itemsUrl)
       .pipe(
         tap(_ => console.log('fetched items')),
@@ -46,7 +48,6 @@ export class ItemService {
   /** READ: return items from ItemService */
   getItem(id: number): Observable<Item> {
     const url = `${this.itemsUrl}/${id}`;
-    // this.messageService.add('ItemService: getting item...');
     return this.http.get<Item>(url).pipe(
       tap(_ => console.log(`fetched item id=${id}`)),
       catchError(this.handleError<Item>(`getItem id=${id}`))

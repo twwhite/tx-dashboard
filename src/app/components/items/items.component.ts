@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Item } from './item';
 import { ItemService } from '../../services/item.service';
+import { Observable } from 'rxjs';
 
 declare var $: any; // Jquery import
 
@@ -28,12 +29,13 @@ declare var $: any; // Jquery import
   <table class="table is-hoverable is-fullwidth">
     <thead>
       <tr>
-        <th></th>
+        <th>Item Category</th><th>Item Name</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of items">
-      <td *ngFor="let attr of item | keyvalue" (click)="onSelect(item.id)">{{ attr.value }}</td>
+      <tr *ngFor="let item of items$ | async">
+        <td (click)="onSelect(item.id)">{{ item.category | titlecase}}</td>
+        <td (click)="onSelect(item.id)">{{ item.name | titlecase}}</td>
       </tr>
     </tbody>
   </table>
@@ -62,26 +64,21 @@ declare var $: any; // Jquery import
 
 export class ItemsComponent implements OnInit {
 
-  items: Item[];
-  @Input() selectedItem: Item;
+  items$: Observable<Item[]>;
   newItem: Item;
+  @Input() selectedItem: Item;
 
   constructor(
     private _itemService: ItemService,
   ) { }
 
   ngOnInit() {
-    this.getItems();
+    this.items$ = this._itemService.getItems();
   }
 
   onSelect(id: number): void {
     this._itemService.getItem(id)
       .subscribe(item => this.selectedItem = item);
-  }
-
-  getItems(): void {
-    this._itemService.getItems()
-      .subscribe(items => this.items = items);
   }
 
   getItem(id: number): void {
@@ -92,9 +89,6 @@ export class ItemsComponent implements OnInit {
   add(newItem: Item): void {
     if (!name) { return; }
     this._itemService.addItem(newItem as Item)
-      .subscribe(item => {
-        this.items.push(item);
-      });
   }
 
   save(): void {
@@ -107,7 +101,6 @@ export class ItemsComponent implements OnInit {
   }
 
   delete(item: Item): void {
-    this.items = this.items.filter(h => h !== item);
     this._itemService.deleteItem(item)
       .subscribe(() => this.goBack());
   }
