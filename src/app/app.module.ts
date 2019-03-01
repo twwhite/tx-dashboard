@@ -11,7 +11,6 @@ import { AppComponent } from './app.component';
 import { ItemsComponent } from './components/items/items.component';
 import { TransactionsComponent } from './components/transactions/transactions.component';
 import { ConversionsComponent } from './components/conversions/conversions.component';
-import { ItemDetailComponent } from './components/items/item-detail/item-detail.component';
 import { MessagesComponent } from './components/messages/messages.component';
 import { ItemSearchComponent } from './components/items/item-search/item-search.component';
 
@@ -21,7 +20,6 @@ import { ItemSearchComponent } from './components/items/item-search/item-search.
     ItemsComponent,
     TransactionsComponent,
     ConversionsComponent,
-    ItemDetailComponent,
     MessagesComponent,
     ItemSearchComponent
   ],

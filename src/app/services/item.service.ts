@@ -17,8 +17,7 @@ const httpOptions = {
 export class ItemService {
 
   private itemsUrl = 'api/items';
-
-
+  private itemUrl: string;
 
   constructor( private http: HttpClient, private messageService: MessageService) { }
 
@@ -29,21 +28,31 @@ export class ItemService {
 
   /** PUT: update the item on the server */
   updateItem (item: Item): Observable<any> {
-    return this.http.put(this.itemsUrl, item, httpOptions).pipe(
-      tap(_ => this.log(`updated item id=${item.id}`)),
-      catchError(this.handleError<any>('updateItem'))
-    );
+    this.itemUrl = 'api/items/'+item.id
+    return this.http.put(this.itemUrl, item, httpOptions)
+      .pipe(
+        tap(_ => this.log(`updated item id=${item.id}`)),
+        catchError(this.handleError<any>('updateItem'))
+      );
   }
 
   /** GET: return items from ItemService */
-  getItems(id?: number): Observable<Item[]> {
-    const url = `${this.itemsUrl}/${id}`;
+  getItems(): Observable<Item[]> {
     this.messageService.add('ItemService: fetched items');
     return this.http.get<Item[]>(this.itemsUrl)
       .pipe(
         tap(_ => this.log('fetched items')),
         catchError(this.handleError('getItems', []))
       );
+  }
+  /** GET: return items from ItemService */
+  getItem(id: number): Observable<Item> {
+    const url = `${this.itemsUrl}/${id}`;
+    this.messageService.add('ItemService: fetched items');
+    return this.http.get<Item>(url).pipe(
+      tap(_ => this.log(`fetched item id=${id}`)),
+      catchError(this.handleError<Item>(`getItem id=${id}`))
+    );
   }
 
   /** POST: add a new item to the server */

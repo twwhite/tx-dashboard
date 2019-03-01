@@ -10,11 +10,8 @@ declare var $: any;
 export class AppComponent {
   title = 'tx-dashboard';
 
-
-
   public toggleVisibility(x){
     $(x).toggle();
-    
   }
 }
 

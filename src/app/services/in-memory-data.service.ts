@@ -9,6 +9,7 @@ import { Injectable } from '@angular/core';
 export class InMemoryDataService {
   createDb() {
     const items = [
+      { type: 1, id: 20, name: "Transparent Conductive Oxide", category: "CVD", value: 850, value_unit: "tonne", yield: 0.66 },
       { type: 0, id: 12, name: "sand", category: "raw material", value: -200, value_unit: "tonne" },
       { type: 0, id: 13, name: "soda ash", category: "raw material", value: -600, value_unit: "tonne" },
       { type: 0, id: 14, name: "dolomite", category: "raw material", value: -350, value_unit: "tonne"},
@@ -17,12 +18,11 @@ export class InMemoryDataService {
       { type: 1, id: 17, name: "Low E Clear", category: "CVD", value: 850, value_unit: "tonne", yield: 0.66 },
       { type: 1, id: 18, name: "Reflective Clear", category: "CVD", value: 850, value_unit: "tonne", yield: 0.66 },
       { type: 1, id: 19, name: "Solar Control", category: "CVD", value: 850, value_unit: "tonne", yield: 0.66 },
-      { type: 1, id: 20, name: "Transparent Conductive Oxide", category: "CVD", value: 850, value_unit: "tonne", yield: 0.66 },
       { type: 1, id: 21, name: "Anti-Reflective Clear", category: "CVD", value: 850, value_unit: "tonne", yield: 0.66,
-          dependencies: [
-              [12, 25, "tonnes"],
-              [13, 532, "tonnes"]
-          ]
+          // dependencies: [
+          //     [12, 25, "tonnes"],
+          //     [13, 532, "tonnes"]
+          // ]
       }
     ];
     return {items};
