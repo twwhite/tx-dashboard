@@ -16,6 +16,7 @@ export class ConversionsComponent implements OnInit {
   public convertFromUnit;
   public convertToUnit;
 
+
   /* Work-in-progress: Input parser for conversion, conversion lookup, rate finder */
   /* onConversionChange called after every keypress in the conversion input boxes */
   public onConversionChange(event) {
@@ -39,6 +40,8 @@ export class ConversionsComponent implements OnInit {
     } else {$('#'+id+'Identified').text(" ");}    // if fail, blank the identified <span> elements 
 
   }
+  
+
 
   /* This is where the conversion is actually calculated */
   public validateConversion() {
@@ -56,7 +59,14 @@ export class ConversionsComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    
+
+
+  $(document).ready(function() {
+  $("#hide").click(function() {
+  $("#unitsTable").toggle();
+  console.log('alert');
+  })});
+
   }
 
 }
