@@ -17,50 +17,60 @@ const httpOptions = {
 export class ItemService {
 
   private itemsUrl = 'api/items';
+  private itemUrl: string;
 
+  constructor( 
+    private http: HttpClient, 
+    // private messageService: MessageService
+  ) { }
 
+  // private log(message: string) {
+  //   this.messageService.add(`ItemService: ${message}`);
+  // }
 
-  constructor( private http: HttpClient, private messageService: MessageService) { }
-
-  private log(message: string) {
-    this.messageService.add(`ItemService: ${message}`);
-  }
-
-
-  /** PUT: update the item on the server */
-  updateItem (item: Item): Observable<any> {
-    return this.http.put(this.itemsUrl, item, httpOptions).pipe(
-      tap(_ => this.log(`updated item id=${item.id}`)),
-      catchError(this.handleError<any>('updateItem'))
-    );
-  }
-
-  /** GET: return items from ItemService */
-  getItems(id?: number): Observable<Item[]> {
-    const url = `${this.itemsUrl}/${id}`;
-    this.messageService.add('ItemService: fetched items');
-    return this.http.get<Item[]>(this.itemsUrl)
-      .pipe(
-        tap(_ => this.log('fetched items')),
-        catchError(this.handleError('getItems', []))
-      );
-  }
-
-  /** POST: add a new item to the server */
+  /** CREATE: add a new item to the server */
   addItem (item: Item): Observable<Item> {
     return this.http.post<Item>(this.itemsUrl, item, httpOptions).pipe(
-      tap((newItem: Item) => this.log(`added item w/ id=${newItem.id}`)),
+      tap((newItem: Item) => console.log(`added item w/ id=${newItem.id}`)),
       catchError(this.handleError<Item>('addItem'))
     );
   }
 
-  /** DELETE: delete the item from the server */
+
+  /** READ: return items from ItemService */
+  getItems(): Observable<Item[]> {
+    return this.http.get<Item[]>(this.itemsUrl)
+      .pipe(
+        tap(_ => console.log('fetched items')),
+        catchError(this.handleError('getItems', []))
+      );
+  }
+  /** READ: return items from ItemService */
+  getItem(id: number): Observable<Item> {
+    const url = `${this.itemsUrl}/${id}`;
+    return this.http.get<Item>(url).pipe(
+      tap(_ => console.log(`fetched item id=${id}`)),
+      catchError(this.handleError<Item>(`getItem id=${id}`))
+    );
+  }
+
+  /** UPDATE: update the item on the server */
+  updateItem (item: Item): Observable<any> {
+    this.itemUrl = 'api/items/'+item.id
+    return this.http.put(this.itemUrl, item, httpOptions)
+      .pipe(
+        tap(_ => console.log(`updated item id=${item.id}`)),
+        catchError(this.handleError<any>('updateItem'))
+      );
+  }
+
+  /** DESTROY: delete the item from the server */
   deleteItem (item: Item | number): Observable<Item> {
     const id = typeof item === 'number' ? item : item.id;
     const url = `${this.itemsUrl}/${id}`;
 
     return this.http.delete<Item>(url, httpOptions).pipe(
-      tap(_ => this.log(`deleted item id=${id}`)),
+      tap(_ => console.log(`deleted item id=${id}`)),
       catchError(this.handleError<Item>('deleteItem'))
     );
   }
@@ -72,7 +82,7 @@ export class ItemService {
       return of([]);
     }
     return this.http.get<Item[]>(`${this.itemsUrl}/?name=${term}`).pipe(
-      tap(_ => this.log(`found items matching "${term}"`)),
+      tap(_ => console.log(`found items matching "${term}"`)),
       catchError(this.handleError<Item[]>('searchItems', []))
     );
   }
@@ -88,7 +98,7 @@ export class ItemService {
     
       console.error(error); 
     
-      this.log(`${operation} failed: ${error.message}`);
+      console.log(`${operation} failed: ${error.message}`);
     
       return of(result as T);
     };
